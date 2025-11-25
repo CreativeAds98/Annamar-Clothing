@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annamar Clothing | Softness They Deserve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES (The Design System) --- */
+        :root {
+            --primary-color: #7B9E89; /* Sage Green - Soft & Organic */
+            --secondary-color: #D4A373; /* Muted Earth Tone */
+            --bg-color: #FFFDF5; /* Milky White - Not harsh white */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #ffffff;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- ANNOUNCEMENT BAR --- */
+        .announcement-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        .logo span { color: var(--primary-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .cart-icon { position: relative; }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--secondary-color);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        /* --- HERO SECTION (H&M Style) --- */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background-image: url('https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 60px;
+            border-radius: 2px;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--text-dark);
+            color: var(--white);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn:hover { background-color: var(--primary-color); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+        }
+        .btn-outline:hover { background: var(--text-dark); color: white; }
+
+        /* --- CATEGORIES (Carter's Style) --- */
+        .section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .categories-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .cat-item {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cat-item:hover { transform: translateY(-5px); }
+
+        .cat-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .marquee-container {
+    background-color: var(--secondary-color); /* Muted Earth Tone */
+    color: white;
+    overflow: hidden;
+    padding: 10px 0;
+    white-space: nowrap;
+    position: relative;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+        /* --- FEATURED PRODUCTS --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .product-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+
+        .prod-img-container {
+            height: 300px;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        
+        .prod-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            border-radius: 4px;
+        }
+
+        .prod-details { padding: 15px; }
+        .prod-title { font-size: 1.1rem; margin-bottom: 5px; }
+        .prod-price { font-weight: 700; color: var(--primary-color); }
+        
+        .add-btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .add-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- TRUST SIGNALS --- */
+        .trust-bar {
+            background-color: #E8F1EC; /* Very light green */
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+        
+        .trust-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .trust-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+
+
+        /* --- REVIEWS SECTION --- */
+          .reviews-section {
+             background-color: #fff; /* Clean white background to separate sections */
+             padding: 60px 20px;
+             text-align: center;
+           }
+
+           .reviews-header {
+             margin-bottom: 40px;
+           }
+
+.reviews-header h2 {
+    font-size: 2rem;
+    color: var(--text-dark);
+}
+
+.rating-summary {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+.stars {
+    color: #FFC107; /* Golden Yellow for stars */
+    margin: 0 5px;
+}
+
+/* Review Cards Grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.review-card {
+    background-color: var(--bg-color); /* Uses the milky white background */
+    padding: 30px;
+    border-radius: 12px;
+    text-align: left;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.reviewer-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.reviewer-info h4 {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.reviewer-info span {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.verified-badge {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    margin-left: 5px;
+}
+
+.review-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Write Review Button */
+.write-review-btn {
+    margin-top: 40px;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    font-weight: 600;
+    border-radius: 50px; /* Rounded pill shape */
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.write-review-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { margin-bottom: 20px; color: var(--secondary-color); }
+        .footer-col ul li { margin-bottom: 10px; opacity: 0.8; cursor: pointer; }
+        .footer-col ul li:hover { opacity: 1; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Mobile Nav Toggle */
+        .menu-toggle { display: none; font-size: 1.5rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 2rem; }
+            .trust-item { width: 100%; margin-bottom: 20px; }
+        }
+
+
+        .whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #20ba5a;
+}
+
+
+
+/* Initial state of elements: hidden and slightly lower */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px); /* Move down 30px */
+    transition: all 0.8s ease-out; /* Smooth transition */
+}
+
+/* State when the element is visible */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        FREE SHIPPING on orders above ₹999 | Use Code: BABYLOVE
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <div class="logo">Annamar<span> Clothing</span></div>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Newborn (0-24M)</a></li>
+                    <li><a href="#">Toddler (2-5Y)</a></li>
+                    <li><a href="#">Organic</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <i class="far fa-heart"></i>
+                <div class="cart-icon" onclick="alert('Opening Cart...')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1>Softness They Deserve</h1>
+            <p>Hypoallergenic, 100% Organic Cotton essentials made with love in Tirupur.</p>
+            <button class="btn">Shop Newborn</button>
+            <button class="btn btn-outline">Shop Toddler</button>
+        </div>
+    </section>
+    <div class="marquee-container">
+    <div class="marquee-content">
+        100% ORGANIC COTTON  •  MADE IN TIRUPUR  •  CHEMICAL FREE  •  SUPREME SOFTNESS  •  WORLDWIDE SHIPPING  •  100% ORGANIC COTTON  •  MADE IN TIRUPUR
+    </div>
+</div>
+
+    <section class="section">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="categories-grid">
+            <div class="cat-item reveal">
+                <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Bodysuits" class="cat-img">
+                <h3>Bodysuits</h3>
+            </div>
+            <div class="cat-item reveal">
+                <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sets" class="cat-img">
+                <h3>Sets</h3>
+            </div>
+            <div class="cat-item reveal">
+                <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Dresses" class="cat-img">
+                <h3>Dresses</h3>
+            </div>
+            <div class="cat-item reveal">
+                <img src="https://images.unsplash.com/photo-1522771930-78848d9293e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Sleepwear" class="cat-img">
+                <h3>Sleepwear</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">New Arrivals</h2>
+        <div class="product-grid">
+            <div class="product-card reveal">
+                <div class="prod-img-container">
+                    <span class="badge">New</span>
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Baby Onesie">
+                </div>
+                <div class="prod-details reveal">
+                    <div class="prod-title">Sage Green Knit Set</div>
+                    <div class="prod-price">₹899</div>
+                    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="prod-img-container">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Baby Dress">
+                </div>
+                <div class="prod-details">
+                    <div class="prod-title">Floral Cotton Dress</div>
+                    <div class="prod-price">₹1,299</div>
+                    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="prod-img-container">
+                    <span class="badge">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Baby Romper">
+                </div>
+                <div class="prod-details">
+                    <div class="prod-title">Cloud Soft Romper</div>
+                    <div class="prod-price">₹699</div>
+                    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="prod-img-container">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Toddler Shirt">
+                </div>
+                <div class="prod-details">
+                    <div class="prod-title">Striped Organic Tee</div>
+                    <div class="prod-price">₹499</div>
+                    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="trust-bar">
+        <div class="trust-container">
+            <div class="trust-item">
+                <i class="fas fa-leaf"></i>
+                <h4>100% Organic</h4>
+                <p>GOTS Certified Cotton</p>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-baby"></i>
+                <h4>Safe for Skin</h4>
+                <p>No Toxic Dyes Used</p>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-undo"></i>
+                <h4>Easy Returns</h4>
+                <p>30 Day Policy</p>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-shipping-fast"></i>
+                <h4>Fast Shipping</h4>
+                <p>All over India</p>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="reviews-section">
+    <div class="reviews-header">
+        <h2>Happy Moms & Dads</h2>
+        <div class="rating-summary">
+            Rated <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span> 
+            <strong>4.8/5</strong> based on 1,200+ reviews
+        </div>
+    </div>
+
+    <div class="reviews-grid">
+        
+        <div class="review-card">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar">P</div>
+                <div class="reviewer-info">
+                    <h4>Priya S. <i class="fas fa-check-circle verified-badge"></i></h4>
+                    <span>Bought: Sage Green Knit Set</span>
+                </div>
+            </div>
+            <div class="stars" style="margin-left: -5px; margin-bottom: 10px; font-size: 0.9rem;">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"I was skeptical about buying online, but the quality is actually better than H&M. The fabric is so buttery soft, my newborn sleeps so well in it. Will order more!"</p>
+        </div>
+
+        <div class="review-card">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar" style="background-color: #D4A373;">R</div>
+                <div class="reviewer-info">
+                    <h4>Rahul M. <i class="fas fa-check-circle verified-badge"></i></h4>
+                    <span>Bought: Toddler Tees</span>
+                </div>
+            </div>
+            <div class="stars" style="margin-left: -5px; margin-bottom: 10px; font-size: 0.9rem;">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+            </div>
+            <p class="review-text">"Great prints and fit. The size chart was accurate. Shipping took 1 day longer than expected, but the packaging was plastic-free which I loved."</p>
+        </div>
+
+        <div class="review-card">
+            <div class="reviewer-profile">
+                <div class="reviewer-avatar" style="background-color: #7B9E89;">A</div>
+                <div class="reviewer-info">
+                    <h4>Anjali K. <i class="fas fa-check-circle verified-badge"></i></h4>
+                    <span>Bought: Floral Dress</span>
+                </div>
+            </div>
+            <div class="stars" style="margin-left: -5px; margin-bottom: 10px; font-size: 0.9rem;">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="review-text">"Beautiful dress! The color doesn't fade after washing. It's hard to find this quality of cotton in Tirupur local markets. Annamar is my new favorite."</p>
+        </div>
+
+    </div>
+
+    <button class="write-review-btn" onclick="alert('Review form would open here!')">Write a Review</button>
+</section>
+
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Annamar Clothing</h4>
+                <p>Soft, sustainable, and stylish clothing for your little ones. Made with love.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li>New Arrivals</li>
+                    <li>Baby Boy</li>
+                    <li>Baby Girl</li>
+                    <li>Accessories</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li>Track Order</li>
+                    <li>Returns & Exchanges</li>
+                    <li>Size Guide</li>
+                    <li>Contact Us</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Stay Connected</h4>
+                <p>Subscribe for exclusive offers.</p>
+                <br>
+                <i class="fab fa-instagram" style="font-size: 1.5rem; margin-right: 10px;"></i>
+                <i class="fab fa-facebook" style="font-size: 1.5rem; margin-right: 10px;"></i>
+                <i class="fab fa-x" style="font-size: 1.5rem;margin-right: 10px;"></i>
+                <i class="fab fa-youtube" style="font-size: 1.5rem;margin-right: 10px;"></i>
+                
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Annamar Clothing. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Simple Javascript for Cart Functionality
+        let count = 0;
+        const cartBadge = document.getElementById('cartCount');
+
+        function addToCart() {
+            count++;
+            cartBadge.innerText = count;
+            
+            // Simple feedback animation
+            cartBadge.style.transform = "scale(1.5)";
+            setTimeout(() => {
+                cartBadge.style.transform = "scale(1)";
+            }, 200);
+            
+            alert("Added to cart! (This is a demo)");
+        }
+
+
+
+
+        // JavaScript to trigger the animation on scroll
+window.addEventListener('scroll', reveal);
+
+function reveal(){
+    var reveals = document.querySelectorAll('.reveal');
+
+    for(var i = 0; i < reveals.length; i++){
+        var windowheight = window.innerHeight;
+        var revealtop = reveals[i].getBoundingClientRect().top;
+        var revealpoint = 150; // Trigger point
+
+        if(revealtop < windowheight - revealpoint){
+            reveals[i].classList.add('active');
+        }
+    }
+}
+    </script>
+
+    <a href="https://wa.me/919999999999" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+</body>
+</html>
